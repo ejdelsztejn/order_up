@@ -41,7 +41,7 @@ RSpec.describe "chef show page", type: :feature do
         visit "/chef/#{@naftali.id}"
 
         click_on("View All Ingredients Used by #{@naftali.name}")
-        expect(page).to eq("/chef/#{@naftali}.id/ingredients")
+        expect(page).to eq("/chef/#{@naftali.id}/ingredients")
       end
       it "I can see a unique list of names of all the ingredients that this chef uses" do
         visit("/chef/#{@naftali}.id/ingredients")
