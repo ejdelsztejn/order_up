@@ -44,7 +44,7 @@ RSpec.describe "chef show page", type: :feature do
         expect(page).to eq("/chef/#{@naftali.id}/ingredients")
       end
       it "I can see a unique list of names of all the ingredients that this chef uses" do
-        visit("/chef/#{@naftali}.id/ingredients")
+        visit("/chef/#{@naftali.id}/ingredients")
 
         expect(page).to have_content(@noodles.name)
         expect(page).to have_content(@eggs.name)
