@@ -19,9 +19,14 @@ RSpec.describe "dish show page", type: :feature do
     it "I see a list of ingredients for that dish and the chef's name" do
       visit "/dish/#{@lokshn_kugel.id}"
 
-      expect(page).to have_content("#{@lokshn_kugel.name}")
-      expect(page).to have_content(DishIngredient.find(dish_id: @lokshn_kugel.id).ingredients)
-      expect(page).to have_content(Chef.find(@lokshn_kugel.chef_id).name)
+      expect(page).to have_content(@lokshn_kugel.name)
+      expect(page).to have_content(@noodles.name)
+      expect(page).to have_content(@eggs.name)
+      expect(page).to have_content(@cottage_cheese.name)
+      expect(page).to have_content(@sugar.name)
+      expect(page).to have_content(@cinnamon.name)
+      expect(page).to have_content(@naftali.name)
+      save_and_open_page
     end
   end
 end
