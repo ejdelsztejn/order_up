@@ -40,11 +40,11 @@ RSpec.describe "chef show page", type: :feature do
       it "I'm taken to a chef's ingredient index page" do
         visit "/chef/#{@naftali.id}"
 
-        click_on("View All Ingredients Used by #{@naftali.name}")
-        expect(page).to eq("/ingredients/#{@chef.id}/")
+        click_link("View All Ingredients Used by #{@naftali.name}")
+        expect(current_path).to eq("/ingredients/#{@naftali.id}")
       end
       it "I can see a unique list of names of all the ingredients that this chef uses" do
-        visit("/ingredients/#{@chef.id}/")
+        visit("/ingredients/#{@naftali.id}/")
 
         expect(page).to have_content(@noodles.name)
         expect(page).to have_content(@eggs.name)
