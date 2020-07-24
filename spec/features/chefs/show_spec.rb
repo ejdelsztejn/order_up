@@ -51,8 +51,26 @@ RSpec.describe "chef show page", type: :feature do
         expect(page).to have_content(@cottage_cheese.name)
         expect(page).to have_content(@sugar.name)
         expect(page).to have_content(@cinnamon.name)
+        expect(page).to have_content(@casing.name)
+        expect(page).to have_content(@schmaltz.name)
+        expect(page).to have_content(@matzo_meal.name)
         expect(page).to have_content(@naftali.name)
       end
+    end
+    it "I see the three most popular ingredients that the chef uses in their dishes" do
+      matzo_ball_soup = @naftali.dishes.create!(name: "Potato Kugel", description: "A warm soup to accompany any shabbos meal")
+      broth = Ingredient.create!(name: "Chicken Broth", calories: 100)
+      DishIngredient.create!(dish: matzo_ball_soup, ingredient: @noodles)
+      DishIngredient.create!(dish: matzo_ball_soup, ingredient: @schmaltz)
+      DishIngredient.create!(dish: matzo_ball_soup, ingredient: @matzo_meal)
+      DishIngredient.create!(dish: matzo_ball_soup, ingredient: broth)
+
+      visit "/chef/#{@naftali.id}"
+
+      expect(page).to have_content("Most Popular ingredients:")
+      expect(page).to have_content("Matzo Meal")
+      expect(page).to have_content("Noodles")
+      expect(page).to have_content("Schmaltz")
     end
   end
 end
